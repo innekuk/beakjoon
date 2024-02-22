@@ -9,7 +9,7 @@ using namespace std;
 
 
 int main(){
-	char text[15][105] = {0};
+	char text[15][1005] = {0};
 	int n;
 	scanf("%d" , &n);
 	
