@@ -23,7 +23,7 @@ int main(){
 		while(text[n][j] != 0){
 			j++;
 		}
-		printf("%c" , text[n][j-1]);
+		printf("%c\n" , text[n][j-1]);
 	}
 
 	return 0;
