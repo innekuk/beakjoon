@@ -14,16 +14,16 @@ int main(){
 	scanf("%d" , &n);
 	
 	for (int i = 0; i < n; i++){
-		scanf("%s" , text[n]);
+		scanf("%s" , text[i]);
 	}
 
 	for (int i =0 ; i< n ; i++){
-		printf("%c" , text[n][0]);
+		printf("%c" , text[i][0]);
 		int j = 0; 
-		while(text[n][j] != 0){
+		while(text[i][j] != 0){
 			j++;
 		}
-		printf("%c\n" , text[n][j-1]);
+		printf("%c\n" , text[i][j-1]);
 	}
 
 	return 0;
