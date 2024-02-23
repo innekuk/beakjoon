@@ -4,10 +4,14 @@
 
 using namespace std;
 
-void change(int* a , int* b){
-	int temp = *a;
-	*a = *b;
-	*b = temp;
+void change(int* s , int* e){
+	int temp = *e;
+	for (int i =0; e-1-i != s-1; i++){
+		*(e-i) = *(e-1-i);
+
+
+	}
+	*s = temp;
 }
 int getmax(int* s, int* e , int spos){
 	int max =0 ;
