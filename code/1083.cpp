@@ -3,19 +3,30 @@
 #include<vector>
 
 using namespace std;
-int n;
-int s;
-int a[55];
 
 void change(int* a , int* b){
 	int temp = *a;
 	*a = *b;
 	*b = temp;
 }
+int getmax(int* s, int* e , int spos){
+	int max =0 ;
+	int pos = -1;
+	for ( int i =0 ; s+i != e; i++){
+		if(max < *(s+i)){
+			max = *(s+i);
+			pos =spos+i;
+		}
+	}
+	return pos;
+}
 
 
 
 int main(){
+	int n;
+	int s;
+	int a[55];
 	scanf("%d" , &n);
 	for (int i=0; i< n; i++){
 		int b;
@@ -23,18 +34,20 @@ int main(){
 		a[i] = b;
 	}
 	scanf("%d" , &s);
-	while(s !=0){
-		for (int i =0 ; i< n-1; i++){
-			if(a[i] < a[i+1]){
-				change(&a[i] , &a[i+1]);
-				break;
-			}
-		}
-		s--;
-
-
-
-
+	int i = 0;
+	while(s >0 && i < n){
+		int limit = (i+s > n) ? n : i+s;
+		int pos = getmax(a+i,a+limit+1 , i);
+		change(a+i , a+pos);
+		//cout << "changing number is "  << *(a+i) << "," << *(a+pos) << endl;
+		//cout << "change : ";
+		//for (int j=0; j< n; j++){
+		//	cout << a[j] << " ";
+		//}
+		s -= pos -i;
+		i++;
+		//cout << endl << "s and i : " << s <<" , " << i;
+		//cout << endl << endl;
 	}
 	for (int i=0; i< n; i++){
 		printf("%d " , a[i]);
