@@ -15,7 +15,7 @@ void change(int* s , int* e){
 }
 int getmax(int* s, int* e , int spos){
 	int max =0 ;
-	int pos = -1;
+	int pos = spos;
 	for ( int i =0 ; s+i != e; i++){
 		if(max < *(s+i)){
 			max = *(s+i);
@@ -40,7 +40,7 @@ int main(){
 	scanf("%d" , &s);
 	int i = 0;
 	while(s >0 && i < n){
-		int limit = (i+s > n) ? n : i+s;
+		int limit = (i+s < n) ? i+s : n-1;
 		int pos = getmax(a+i,a+limit+1 , i);
 		change(a+i , a+pos);
 		//cout << "changing number is "  << *(a+i) << "," << *(a+pos) << endl;
