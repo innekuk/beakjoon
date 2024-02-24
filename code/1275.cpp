@@ -19,7 +19,7 @@ struct SEG {
 		if (s==e && pos == e){
 			return tree[index] = val;
 		}
-		if (s > val || val > e){
+		if (s > pos || pos > e){
 			return tree[index];
 		}
 		int mid = (s+e)/2;
@@ -74,7 +74,7 @@ int main () {
 		else{
 			printf("%lld\n" , tree.sum(x,y));
 		}
-		cout << "a and b : " << a << " , " << b << endl;
+		//cout << "a and b : " << a << " , " << b << endl;
 		tree.init(a,b);
 	}
 	return 0;
