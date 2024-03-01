@@ -49,11 +49,11 @@ int main(){
 
 	for (int i = -100; i<=100; i++){
 		cntlistclear();
-		if (100%abs(i) < maxlength){
+		if ( i != 0&&(100%abs(i) < maxlength)){
 			continue;
 		}
 		for (int j =0 ; j< n-maxlength; j++){
-			if (100%abs(i) < maxlength){
+			if (i != 0 && (100%abs(i) < maxlength)){
 				break;
 			}
 			if(cntlist[j] == 0){
