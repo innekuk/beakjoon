@@ -52,7 +52,7 @@ int main(){
 		if ( i != 0&&(100%abs(i)+1 < maxlength)){
 			continue;
 		}
-		for (int j =0 ; j< n-maxlength; j++){
+		for (int j =0 ; j< n; j++){
 			if (i != 0 && (100%abs(i)+1 < maxlength)){
 				break;
 			}
