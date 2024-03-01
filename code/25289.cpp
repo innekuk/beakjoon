@@ -15,6 +15,9 @@ int getlength(int start,int size){
 	int cnt = 1;
 	int f = list[start];
 	for (int i = start+1; i < n; i++){
+		if (f+size > 100 || f+size < 1){
+			break;
+		}
 		if (list[i] == f+size){
 			cntlist[i] = 1;
 			cnt++;
