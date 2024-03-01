@@ -45,7 +45,7 @@ int main(){
 	for (int i = -100; i<=100; i++){
 		cntlistclear();
 		for (int j =0 ; j< n; j++){
-			if(cntlist[j] == 0){
+			if(cntlist[j] == 0 && (n-j > maxlength)){
 				int length = getlength(j , i);
 				if (length > maxlength){
 					maxlength = length;
