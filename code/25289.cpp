@@ -32,6 +32,11 @@ void cntlistclear(){
 	}
 }
 
+int abs(int k){
+	return (k>0) ? k : -k;
+}
+
+
 
 int main(){
 	
@@ -44,8 +49,14 @@ int main(){
 
 	for (int i = -100; i<=100; i++){
 		cntlistclear();
-		for (int j =0 ; j< n; j++){
-			if(cntlist[j] == 0 && (n-j > maxlength)){
+		if (100%abs(i) < maxlength){
+			continue;
+		}
+		for (int j =0 ; j< n-maxlength; j++){
+			if (100%abs(i) < maxlength){
+				break;
+			}
+			if(cntlist[j] == 0){
 				int length = getlength(j , i);
 				if (length > maxlength){
 					maxlength = length;
