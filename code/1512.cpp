@@ -1,7 +1,12 @@
 #include<iostream>
 #include<algorithm>
+#include<map>
+#include<string>
 
 using namespace std;
+
+
+map<string,int> smap;
 
 char dna[3005];
 char copydna[3005];
@@ -24,26 +29,36 @@ int main() {
 
 	for (int i = T; i>= 1; i--){
 		int cnt = 0;
-		if (length <= i){
+		if (length <= i || min == 0){
 			printf("0");
 			return 0;
 		}
 		for (int j = 0; j < length-i; j++){
 			back();
-			for (int k = j+i; k <length; k++){
-				if (copydna[k] != copydna[k-i]){
-					cnt++;
-					copydna[k] = copydna[k-i];
+			smap.clear();
+			string code = "";
+			for (int k = j ; k < j+i;k++){
+				code += copydna[k];
+			}
+			if (smap[code] == 0){
+				for (int k = j+i; k <length; k++){
+					if (copydna[k] != copydna[k-i]){
+						cnt++;
+						copydna[k] = copydna[k-i];
+					}
+				}
+				for (int k = j -i; k>=0; k--){
+					if (copydna[k] != copydna[k+i]){
+						cnt++;
+						copydna[k] = copydna[k+i];
+					}
+				}
+				if (min > cnt){
+					min = cnt;
 				}
 			}
-			for (int k = j -i; k>=0; k--){
-				if (copydna[k] != copydna[k+i]){
-					cnt++;
-					copydna[k] = copydna[k+i];
-				}
-			}
-			if (min > cnt){
-				min = cnt;
+			else{
+				smap[code] = 1;
 			}
 		}
 	}
