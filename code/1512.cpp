@@ -34,32 +34,24 @@ int main() {
 			return 0;
 		}
 		for (int j = 0; j < length-i; j++){
-			back();
-			smap.clear();
 			string code = "";
 			for (int k = j ; k < j+i;k++){
-				code += copydna[k];
+				code += dna[k];
 			}
-			if (smap[code] == 0){
 				for (int k = j+i; k <length; k++){
-					if (copydna[k] != copydna[k-i]){
+					if (dna[k] != code[k%i -j%i]){
 						cnt++;
-						copydna[k] = copydna[k-i];
 					}
 				}
 				for (int k = j -i; k>=0; k--){
-					if (copydna[k] != copydna[k+i]){
+					if (dna[k] != code[k%i - j%i]){
 						cnt++;
-						copydna[k] = copydna[k+i];
 					}
 				}
 				if (min > cnt){
 					min = cnt;
 				}
-			}
-			else{
-				smap[code] = 1;
-			}
+			
 		}
 	}
 	printf("%d",min);
