@@ -34,6 +34,7 @@ int main() {
 			return 0;
 		}
 		for (int j = 0; j < length-i; j++){
+			smap.clear();
 			string code = "";
 			for (int k = j ; k < j+i;k++){
 				code += dna[k];
