@@ -33,22 +33,41 @@ int main() {
 			printf("0");
 			return 0;
 		}
-		for (int j = 0; j < length-i; j++){
-			for (int k = j+i; k <length; k++){
-				if (dna[k] != dna[k%i -j%i + j]){
-					cnt++;
-				}
-			}
-			for (int k = j -i; k>=0; k--){
-				if (dna[k] != dna[k%i - j%i + j]){
-					cnt++;
-				}
-			}
-			if (min > cnt){
-				min = cnt;
+		
+		for (int j = 0; j< i; j++){
+			int count[4] = {0};
+			int countmax = 0;
+			int countpos = -1;
+			for (int k=j; k < length; k += i){
+			       if (dna[k] == 'A'){
+				       count[0]++;
+			       }
+			       if (dna[k] == 'C'){
+				       count[1]++;
+			       }
+			       if (dna[k] =='G'){
+				       count[2]++;
+			       }
+			       if (dna[k] =='T'){
+				       count[3]++;
+			       }
 			}
 			
-			
+
+			for (int j =0 ; j<4; j++){
+				if (countmax < count[j]){
+					countmax = count[j];
+					countpos = j;
+				}
+			}
+			for (int j =0; j< 4; j++){
+				if (countpos != j){
+					cnt += count[j];
+				}
+			}
+		}
+		if (cnt < min){
+			min = cnt;
 		}
 	}
 	printf("%d",min);
