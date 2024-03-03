@@ -38,6 +38,7 @@ int main() {
 			for (int k = j ; k < j+i;k++){
 				code += dna[k];
 			}
+			if (smap[code] == 0){
 				for (int k = j+i; k <length; k++){
 					if (dna[k] != code[k%i -j%i]){
 						cnt++;
@@ -51,6 +52,9 @@ int main() {
 				if (min > cnt){
 					min = cnt;
 				}
+				smap[code] = 1;
+			}
+			
 			
 		}
 	}
