@@ -34,26 +34,18 @@ int main() {
 			return 0;
 		}
 		for (int j = 0; j < length-i; j++){
-			smap.clear();
-			string code = "";
-			for (int k = j ; k < j+i;k++){
-				code += dna[k];
+			for (int k = j+i; k <length; k++){
+				if (dna[k] != dna[k%i -j%i + j]){
+					cnt++;
+				}
 			}
-			if (smap[code] == 0){
-				for (int k = j+i; k <length; k++){
-					if (dna[k] != code[k%i -j%i]){
-						cnt++;
-					}
+			for (int k = j -i; k>=0; k--){
+				if (dna[k] != dna[k%i - j%i + j]){
+					cnt++;
 				}
-				for (int k = j -i; k>=0; k--){
-					if (dna[k] != code[k%i - j%i]){
-						cnt++;
-					}
-				}
-				if (min > cnt){
-					min = cnt;
-				}
-				smap[code] = 1;
+			}
+			if (min > cnt){
+				min = cnt;
 			}
 			
 			
