@@ -4,58 +4,66 @@
 
 using namespace std;
 
-int val[10] = {0};
+int maxval = 0;
 
-int check(int n){
-	int checkarr[8] = {0};
-	for (int i =0; i<n; i++){
-		if (check[val[i]]==0){
-			check[val[i]] = 1;
-		}
-		else{
-			return 0;
+void getmax(vector<int> ans);
+
+
+void actionbroth(vector<int> val ,int n , vector<int> ans){
+	if (n > 1){
+		for (int i =0; i<n; i++){
+			vector<int> nextans = ans;
+			nextans.push_back(val[i]);
+			vector<int> newval;
+			for (int j = 0; j<n; j++){
+				if (j!=i){
+					newval.push_back(val[j]);
+				}
+			}
+			actionbroth(newval,n-1,nextans);
 		}
 	}
-	return 1;
+	else {
+		ans.push_back(val[0]);
+		getmax(ans);
+	}
 }
+
+
+void getmax(vector<int> ans){
+	vector<int> sum;
+	int cnt = 0;
+	sum.push_back(ans[0]);
+	for (int i =1; i<ans.size(); i++){
+		sum.push_back(sum[i-1] + ans[i]);
+	}
+	for (int i =0; i< sum.size(); i++){
+		for (int j =0; j < i; j++){
+			if ((sum[i] - sum[j]) == 50){
+				cnt++;
+			}
+		}
+	}
+	if (maxval < cnt){
+		maxval = cnt;
+	}
+}
+
+
+
+
 
 int main(){
 	int n;
-	int maxval = 0;
-	int arr[10] = {0};
 	vector<int> vec;
 	scanf("%d",&n);
 	for (int i =0; i<n; i++){
-		scanf("%d",&arr[i]);
+		int a;
+		scanf("%d",&a);
+		vec.push_back(a);
 	}
-	for (val[0] = 0; val[0] < 8; val[0]++){
-		for (val[1]=0; val[1] < 8; val[1]++){
-			if (check(2) == 0){
-				continue;
-			}
-			for (val[2]=0; val[2] < 8; val[2]++){
-				if (check(3) ==0){
-					continue;
-				}
-				for (val[3]=0; val[3] < 8; val[3]++){
-					if (check(4) ==0){
-						continue;
-					}
-					for (val[4]=0; val[4]<8; val[4]++){
-						if (check(5) ==0){
-							continue;
-						}
-						for (val[5]=0; val[5] < 8; val[5]++){
-							if (check(6) ==0){
-								continue;
-							}
-							for(val[6]=0; val[6] <8; val[6]++){
-								if (check(7) ==0){
-									continue;
-								}
-								for(val[7]=0; val[7] <8; val[7]++){
-									if (check(8) ==0){
-										continue;
-									}
-									
+	vector<int> ans;
+	actionbroth(vec,n,ans);
+	printf("%d",maxval);
+}
 
