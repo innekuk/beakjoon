@@ -24,9 +24,12 @@ int main(){
 			continue;
 		}
 		int maxspeed;
-		for (maxspeed = 2; (maxspeed-1+2)*(maxspeed-2) + maxspeed <= length; maxspeed++);
+		for (maxspeed = 2; (maxspeed-1+2)*(maxspeed-3+1) + maxspeed <= length; maxspeed++);
 		maxspeed--;
-		cnt = (maxspeed-2) +1 + ceil((length-((maxspeed-1+2)*(maxspeed-2)+maxspeed))/(double)maxspeed) + 2;
+		cnt = (maxspeed-2) +1 + (length-((maxspeed-1+2)*(maxspeed-2)+maxspeed))/maxspeed + 2;
+		if ((length-((maxspeed-1+2)*(maxspeed-2)+maxspeed))%maxspeed != 0 ){
+			cnt++;
+		}
 		printf("%d\n",cnt);
 	}
 }
