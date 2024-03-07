@@ -7,9 +7,9 @@ using namespace std;
 int main(){
 	int n;
 	scanf("%d", &n);
-	for (int i =0; i<n; i++){
-		int x,y,length,cnt = 0,currentspeed = 1;
-		scanf("%d %d",&x,&y);
+	for (long long int i =0; i<n; i++){
+		long long int x,y,length,cnt = 0;
+		scanf("%lld %lld",&x,&y);
 		length = y-x-2;
 		if (length == -1){
 			printf("1\n");
@@ -23,7 +23,7 @@ int main(){
 			printf("3\n");
 			continue;
 		}
-		int maxspeed;
+		long long int maxspeed;
 		for (maxspeed = 2; (maxspeed-1+2)*(maxspeed-3+1) + maxspeed <= length; maxspeed++);
 		maxspeed--;
 		cnt = (maxspeed-2)*2 +1 + ceil((length-((maxspeed-1+2)*(maxspeed-2)+maxspeed))/(double)maxspeed) + 2;
