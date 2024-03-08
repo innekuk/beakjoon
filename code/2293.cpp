@@ -14,7 +14,9 @@ int main(){
 	for (int i =0 ; i< n; i++){
 		int a;
 		scanf("%d",&a);
-		val.push_back(a);
+		if (a <= 10000){
+			val.push_back(a);
+		}
 	}
 
 
@@ -24,6 +26,7 @@ int main(){
 			countmap[j] += countmap[j-val[i]];
 		}
 	}
+
 	printf("%d",countmap[k]);
 }
 
