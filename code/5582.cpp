@@ -27,6 +27,9 @@ int main(){
 			if (a[i] == b[j] && j ==0){
 				dpmap[(i+1)%2][j] = 1;
 			}
+			if (a[i] != b[j]){
+				dpmap[(i+1)%2][j] = 0;
+			}
 		}
 		for (int j =0; j < blength; j++){
 			if (max < dpmap[(i+1)%2][j]){
