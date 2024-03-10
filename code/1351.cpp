@@ -27,3 +27,4 @@ int get(int i){
 	}
 	return dpmap[i] = get(i/p) + get(i/q);
 }
+
