@@ -13,8 +13,8 @@ long long int get(long long int i);
 int main(){
 	dpmap[0] = 1;
 	long long int n;
-	scanf("%d %d %d", &n,&p,&q);
-	printf("%d",get(n));
+	scanf("%lld %lld %lld", &n,&p,&q);
+	printf("%lld",get(n));
 
 }
 
