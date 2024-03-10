@@ -5,14 +5,14 @@
 using namespace std;
 
 
-map<int , int> dpmap;
-int p , q;
+map<long long int , long long int> dpmap;
+long long int p , q;
 
-int get(int i);
+long long int get(long long int i);
 
 int main(){
 	dpmap[0] = 1;
-	int n;
+	long long int n;
 	scanf("%d %d %d", &n,&p,&q);
 	printf("%d",get(n));
 
@@ -20,7 +20,7 @@ int main(){
 
 
 
-int get(int i){
+long long int get(long long int i){
 
 	if (dpmap[i] != 0){
 		return dpmap[i];
