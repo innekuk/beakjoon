@@ -25,15 +25,20 @@ int main(){
 		printf("%d",cnt);
 		return 0;
 	}
+	//for (int i =0; i<10; i++){
+	//	printf("%d , " ,brokenbutton[i]);
+	//}
+	//printf("\n");
 	int maxcnt;
-	for (max =n; check(max,brokenbutton) ==0 && max <= 500000; max++);
-	if (max <= 500000){
+	if (!(a == 9 && brokenbutton[0] == 0)){
+		for (max =n; check(max,brokenbutton) ==0; max++);
 		maxcnt = check(max,brokenbutton);
 		maxcnt += max-n;
 		if (maxcnt < cnt){
 			cnt = maxcnt;
 		}
 	}
+	
 
 	int mincnt;
 	for (min=n; check(min,brokenbutton) ==0 && min >= 0; min--);
