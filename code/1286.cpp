@@ -7,7 +7,7 @@ using namespace std;
 
 
 char map[55][55] = {0};
-int ans[30] = {0};
+long long int ans[30] = {0};
 
 
 int main(){
@@ -23,7 +23,7 @@ int main(){
 	}
 
 	for (int i =0; i<26; i++){
-		printf("%d\n" , ans[i]);
+		printf("%lld\n" , ans[i]);
 	}
 }
 
