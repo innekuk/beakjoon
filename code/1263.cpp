@@ -34,7 +34,12 @@ int main(){
 			currenttime = vec[i].second - vec[i].first;
 		}
 	}
-	printf("%d",currenttime);
+	if (currenttime >=0){
+		printf("%d",currenttime);
+	}
+	else{
+		printf("-1",currenttime);
+	}
 }
 
 
