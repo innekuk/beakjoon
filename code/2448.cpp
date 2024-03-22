@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int map[4000][4000] = {0};
+int map[9000][4000] = {0};
 
 void f(int posy , int posx, int n){
     if (n != 1)
