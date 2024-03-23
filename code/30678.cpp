@@ -31,7 +31,7 @@ int main(){
 	scanf("%d" , &n);
 	f(0,0,n);
 	int size = pow(5,n);
-	for (int i =size ; i >= 0; i--){
+	for (int i =size-1 ; i >= 0; i--){
 		for (int j =0; j< size; j++){
 			if (map[j][i] == 1){
 				printf("*");
