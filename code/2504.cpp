@@ -26,7 +26,7 @@ int main(){
 			point.push_back(vector<int>());
 		}
 		if (((map[i] == ')' || map[i] == ']') && st.empty()) || (map[i] == ')' && st.top() == 2) || (map[i] == ']' && st.top() == 1)){
-			printf("b0");
+			printf("0");
 			return 0;
 		}
 		if (map[i] == ')' && st.top() == 1){
@@ -74,7 +74,7 @@ int main(){
 		i++;
 	}
 	if (!st.empty()){
-		printf("b0");
+		printf("0");
 		return 0;
 	}
 	for (int i =0; i< point[0].size(); i++){
