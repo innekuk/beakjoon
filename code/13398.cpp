@@ -17,7 +17,7 @@ int check(int n){
 	int max = arr[0];
 	dp[0] = arr[0];
 	for (int i =1; i< n; i++){
-		if (dp[i-1] >= 0){
+		if (dp[i-1] > 0){
 			dp[i] = dp[i-1] + arr[i];
 		}
 		else{
