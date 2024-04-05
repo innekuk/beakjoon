@@ -51,6 +51,7 @@ int main(){
 	max = check(n);
 	//printf("max : %d",max);
 	int realmax = max;
+	
 	for (int i =0; i<n; i++){
 		if (dp[i] == max){
 			if (dpstartpos[i] > 1){
@@ -78,9 +79,17 @@ int main(){
 				if (dp[i] + submax > realmax){
 					realmax = dp[i] + submax;
 				}
-			}	
+			}
+			for (int j = dpstartpos[i]; j<=i ; j++){
+				if (arr[j] < 0 && realmax < dp[i] -arr[j]){
+					realmax = dp[i] -arr[j];
+				}
+			}
 		}
 	}
+	
+
+
 
 	printf("%d",realmax);
 }
