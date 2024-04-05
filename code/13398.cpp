@@ -17,7 +17,7 @@ int check(int n){
 	int max = arr[0];
 	dp[0] = arr[0];
 	for (int i =1; i< n; i++){
-		if (dp[i-1] > 0){
+		if (dp[i-1] >= 0){
 			dp[i] = dp[i-1] + arr[i];
 		}
 		else{
@@ -70,7 +70,7 @@ int main(){
 			if (i <= n-3){
 				int submax = arr[i+2];
 				int sum = submax;
-				for (int j = i+3; sum >= 0 ; j++){
+				for (int j = i+3; sum >= 0 && j < n ; j++){
 					sum += arr[j];
 					if (sum > submax){
 						submax = sum;
