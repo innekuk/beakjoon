@@ -8,6 +8,7 @@ using namespace std;
 
 int dp[100005] = {0};
 int dpstartpos[100005] = {0};
+int maxdp[100005] = {0};
 int arr[100005] = {0};
 
 
@@ -15,18 +16,26 @@ int arr[100005] = {0};
 int check(int n){
 	int startpos = 0;
 	int max = arr[0];
+	int submax = arr[0];
 	dp[0] = arr[0];
 	for (int i =1; i< n; i++){
-		if (dp[i-1] >= 0){
+		if (dp[i-1] > 0){
 			dp[i] = dp[i-1] + arr[i];
 		}
 		else{
 			dp[i] = arr[i];
+			for (int j = startpos; j <i; j++){
+				maxdp[j] = submax;
+			}
 			startpos = i;
+			submax = arr[i];
 		}
 		dpstartpos[i] = startpos;
 		if (dp[i] > max){
 			max = dp[i];
+		}
+		if (dp[i] > submax){
+			submax = dp[i];
 		}
 	}
 	return max;
@@ -53,46 +62,20 @@ int main(){
 	int realmax = max;
 	
 	for (int i =0; i<n; i++){
-		if (dp[i] == max){
-			if (dpstartpos[i] > 1){
-				int submax =arr[dpstartpos[i]-2];
-				int sum = submax;
-				for (int j = dpstartpos[i] -3; j >= dpstartpos[dpstartpos[i]-2]; j--){
-					sum += arr[j];
-					if (sum > submax){
-						submax = sum;
-					}
-				}
-				if (dp[i] + submax > realmax){
-					realmax = dp[i] + submax;
-				}
+		if (arr[i] < 0){
+			int submax = 0;
+			if (i > 0){
+				submax += maxdp[i-1];
 			}
-			if (i <= n-3){
-				int submax = arr[i+2];
-				int sum = submax;
-				for (int j = i+3; sum >= 0 && j < n ; j++){
-					sum += arr[j];
-					if (sum > submax){
-						submax = sum;
-					}
-				}
-				if (dp[i] + submax > realmax){
-					realmax = dp[i] + submax;
-				}
+			if (i < n-1){
+				submax += maxdp[i+1];
 			}
-			if (i != dpstartpos[i]){
-				for (int j = dpstartpos[i]; j<=i ; j++){
-					if (arr[j] < 0 && realmax < dp[i] -arr[j]){
-						realmax = dp[i] -arr[j];
-					}
-				}
+			if (realmax < submax){
+				realmax = submax;
 			}
 		}
 	}
 	
-
-
-
 	printf("%d",realmax);
 }
 
