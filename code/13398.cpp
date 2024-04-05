@@ -24,9 +24,10 @@ int check(int n){
 		}
 		else{
 			dp[i] = arr[i];
-			for (int j = startpos; j <i; j++){
+			for (int j = startpos; j <i-1; j++){
 				maxdp[j] = submax;
 			}
+			maxdp[i-1] = arr[i-1];
 			startpos = i;
 			submax = arr[i];
 		}
@@ -37,6 +38,9 @@ int check(int n){
 		if (dp[i] > submax){
 			submax = dp[i];
 		}
+	}
+	for (int i = dpstartpos[n-1]; i< n; i++){
+		maxdp[i] =submax;
 	}
 	return max;
 
@@ -56,13 +60,15 @@ int main(){
 		return 0;
 	}
 	
-
 	max = check(n);
 	//printf("max : %d\n",max);
+	//for (int i =0; i< n; i++){
+	//	printf("%d : %d \n" , arr[i] , maxdp[i]);
+	//}
 	int realmax = max;
 	
 	for (int i =0; i<n; i++){
-		if (arr[i] < 0){
+		if (arr[i] < 0 && ((i < n-1 && (dpstartpos[i] != dpstartpos[i+1])) || (i > 0 && (dpstartpos[i] != dpstartpos[i-1])))){
 			int submax = 0;
 			if (i > 0){
 				submax += maxdp[i-1];
@@ -72,6 +78,11 @@ int main(){
 			}
 			if (realmax < submax){
 				realmax = submax;
+			}
+		}
+		if (arr[i] < 0 && dpstartpos[i] != i && (i > 0 && dpstartpos[i] == dpstartpos[i-1])){
+			if (realmax < maxdp[i] -arr[i]){
+				realmax = maxdp[i] -arr[i];
 			}
 		}
 	}
