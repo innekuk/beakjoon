@@ -28,6 +28,7 @@ int check(int n){
 				maxdp[j] = submax;
 			}
 			maxdp[i-1] = arr[i-1];
+			dpstartpos[i-1] = i-1;
 			startpos = i;
 			submax = arr[i];
 		}
@@ -80,7 +81,7 @@ int main(){
 				realmax = submax;
 			}
 		}
-		if (arr[i] < 0 && dpstartpos[i] != i && (i > 0 && dpstartpos[i] == dpstartpos[i-1])){
+		if (arr[i] < 0 && dpstartpos[i] != i && (i > 0 && dpstartpos[i] == dpstartpos[i-1]) && (i < n-1 && (dpstartpos[i] == dpstartpos[i+1]))){
 			if (realmax < maxdp[i] -arr[i]){
 				realmax = maxdp[i] -arr[i];
 			}
