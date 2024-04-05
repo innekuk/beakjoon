@@ -14,7 +14,7 @@ int arr[100005] = {0};
 
 int check(int n){
 	int startpos = 0;
-	int max = dp[0];
+	int max = arr[0];
 	dp[0] = arr[0];
 	for (int i =1; i< n; i++){
 		if (dp[i-1] >= 0){
@@ -50,7 +50,7 @@ int main(){
 
 	max = check(n);
 	//printf("max : %d",max);
-	int realmax = 0;
+	int realmax = max;
 	for (int i =0; i<n; i++){
 		if (dp[i] == max){
 			if (dpstartpos[i] > 1){
