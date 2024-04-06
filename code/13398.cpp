@@ -7,8 +7,11 @@ using namespace std;
 
 
 
-map<int,int> dpsubmap;
+map<int,int> dpsummap;
 map<int,int> dpmaxmap;
+
+vector<int> stacksum;
+vector<int> stackmax;
 
 int dp[100005] = {0};
 int dpstartpos[100005] = {0};
@@ -17,8 +20,6 @@ int arr[100005] = {0};
 
 
 vector<int> realarr;
-
-
 
 int check(int n){
 	int startpos = 0;
@@ -99,7 +100,7 @@ int main(){
 			//printf("-pos : %d\n" , i);
 			submax = dp[i-1];
 			subnum = dp[i-1];
-			for (int j = i+1 ; j<realarr.size() && subnum >= 0; j++){
+			for (int j = i+1 ; j<realarr.size() && subnum > 0; j++){
 				subnum += realarr[j];
 				if (submax < subnum){
 					submax = subnum;
