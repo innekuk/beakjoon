@@ -71,7 +71,7 @@ int main(){
 	for (int i =0; i<n; i++){
 		int submax;
 		int subnum;
-		if (arr[i] < 0){
+		if (arr[i] < 0 && dpstartpos[i] != i){
 			submax = dp[i-1];
 			subnum = dp[i-1];
 			for (int j = i+1 ; j<n && subnum >= 0; j++){
