@@ -69,22 +69,20 @@ int main(){
 	int realmax = max;
 	
 	for (int i =0; i<n; i++){
-		if (arr[i] < 0 && ((i < n-1 && (dpstartpos[i] != dpstartpos[i+1])) || (i > 0 && (dpstartpos[i] != dpstartpos[i-1])))){
-			int submax = 0;
-			if (i > 0){
-				submax += maxdp[i-1];
-			}
-			if (i < n-1){
-				submax += maxdp[i+1];
-			}
-			if (realmax < submax){
-				realmax = submax;
+		int submax;
+		int subnum;
+		if (arr[i] < 0){
+			submax = dp[i-1];
+			subnum = dp[i-1];
+			for (int j = i+1 ; j<n && subnum >= 0; j++){
+				subnum += arr[j];
+				if (submax < subnum){
+					submax = subnum;
+				}
 			}
 		}
-		if (arr[i] < 0 && dpstartpos[i] != i && (i > 0 && dpstartpos[i] == dpstartpos[i-1]) && (i < n-1 && (dpstartpos[i] == dpstartpos[i+1]))){
-			if (realmax < maxdp[i] -arr[i]){
-				realmax = maxdp[i] -arr[i];
-			}
+		if (realmax < submax){
+			realmax = submax;
 		}
 	}
 	
