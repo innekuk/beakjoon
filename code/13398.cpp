@@ -64,14 +64,15 @@ int main(){
 	max = check(n);
 	//printf("max : %d\n",max);
 	//for (int i =0; i< n; i++){
-	//	printf("%d : %d \n" , arr[i] , maxdp[i]);
+	//	printf("%10d -> dp : %10d ,maxdp : %10d , dpstartpos : %10d\n" , arr[i], dp[i] , maxdp[i] , dpstartpos[i]);
 	//}
 	int realmax = max;
 	
 	for (int i =0; i<n; i++){
 		int submax;
 		int subnum;
-		if (arr[i] < 0 && dpstartpos[i] != i){
+		if (arr[i] < 0 && i != 0){
+			//printf("-pos : %d\n" , i);
 			submax = dp[i-1];
 			subnum = dp[i-1];
 			for (int j = i+1 ; j<n && subnum >= 0; j++){
@@ -80,10 +81,11 @@ int main(){
 					submax = subnum;
 				}
 			}
+			if (realmax < submax){
+				realmax = submax;
+			}
 		}
-		if (realmax < submax){
-			realmax = submax;
-		}
+		
 	}
 	
 	printf("%d",realmax);
