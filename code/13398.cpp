@@ -15,6 +15,7 @@ vector<int> stackmax;
 
 int dp[100005] = {0};
 int dpstartpos[100005] = {0};
+int dpendpos[100005] = {0};
 int maxdp[100005] = {0};
 int arr[100005] = {0};
 
@@ -34,8 +35,10 @@ int check(int n){
 			dp[i] = realarr[i];
 			for (int j = startpos; j <i-1; j++){
 				maxdp[j] = submax;
+				dpendpos[j] = i-2;
 			}
 			maxdp[i-1] = realarr[i-1];
+			dpendpos[i-1] = i-1;
 			dpstartpos[i-1] = i-1;
 			startpos = i;
 			submax = arr[i];
@@ -50,6 +53,7 @@ int check(int n){
 	}
 	for (int i = dpstartpos[n-1]; i< n; i++){
 		maxdp[i] =submax;
+		dpendpos[i] = n-1;
 	}
 	return max;
 
@@ -87,10 +91,10 @@ int main(){
 
 
 	max = check(realarr.size());
-	//printf("max : %d\n",max);
-	//for (int i =0; i< realarr.size(); i++){
-	//	printf("%10d -> dp : %10d ,maxdp : %10d , dpstartpos : %10d\n" , realarr[i], dp[i] , maxdp[i] , dpstartpos[i]);
-	//}
+	printf("max : %d\n",max);
+	for (int i =0; i< realarr.size(); i++){
+		printf("%10d -> dp : %10d ,maxdp : %10d , dpstartpos : %10d dpendpos : %10d \n" , realarr[i], dp[i] , maxdp[i] , dpstartpos[i],dpendpos[i]);
+	}
 	int realmax = max;
 	
 	for (int i =0; i<realarr.size(); i++){
@@ -100,11 +104,12 @@ int main(){
 			//printf("-pos : %d\n" , i);
 			submax = dp[i-1];
 			subnum = dp[i-1];
-			for (int j = i+1 ; j<realarr.size() && subnum > 0; j++){
-				subnum += realarr[j];
-				if (submax < subnum){
-					submax = subnum;
+			for (int j = i+1 ; j<realarr.size() && subnum > 0; j = dpendpos[j] + 1){
+				if (submax < subnum + maxdp[dpendpos[j]]){
+					submax = subnum + maxdp[dpendpos[j]];
 				}
+				subnum += dp[dpendpos[j]];
+				
 			}
 			if (realmax < submax){
 				realmax = submax;
