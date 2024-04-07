@@ -100,7 +100,7 @@ int main(){
 	for (int i =0; i<realarr.size(); i++){
 		int submax;
 		int subnum;
-		if (realarr[i] < 0 && i != 0 && dpstartpos[i-1] != dpstartpos[i+1]){
+		if (realarr[i] < 0 && i != 0 && i+1 < realarr.size() && dpstartpos[i-1] != dpstartpos[i+1]){
 			//printf("-pos : %d\n" , i);
 			submax = dp[i-1];
 			subnum = dp[i-1];
@@ -115,11 +115,12 @@ int main(){
 				realmax = submax;
 			}
 		}
-		if (realarr[i] < 0 && i != 0 && dpstartpos[i-1] == dpstartpos[i+1]){
+		if (realarr[i] < 0 && i != 0 && i+1 < realarr.size()&& dpstartpos[i-1] == dpstartpos[i+1]){
 			if (realmax < maxdp[i] - realarr[i]){
 				realmax = maxdp[i] - realarr[i];
 			}
 		}
+
 		
 	}
 	
