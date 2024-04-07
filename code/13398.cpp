@@ -91,10 +91,10 @@ int main(){
 
 
 	max = check(realarr.size());
-	printf("max : %d\n",max);
-	for (int i =0; i< realarr.size(); i++){
-		printf("%10d -> dp : %10d ,maxdp : %10d , dpstartpos : %10d dpendpos : %10d \n" , realarr[i], dp[i] , maxdp[i] , dpstartpos[i],dpendpos[i]);
-	}
+	//printf("max : %d\n",max);
+	//for (int i =0; i< realarr.size(); i++){
+	//	printf("%10d -> dp : %10d ,maxdp : %10d , dpstartpos : %10d dpendpos : %10d \n" , realarr[i], dp[i] , maxdp[i] , dpstartpos[i],dpendpos[i]);
+	//}
 	int realmax = max;
 	
 	for (int i =0; i<realarr.size(); i++){
