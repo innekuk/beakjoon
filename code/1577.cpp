@@ -5,6 +5,7 @@
 using namespace std;
 
 long long int map[105][105] = {0};
+int domap[105][105] = {0};
 int cn;
 int construction[55][5];
 
@@ -25,17 +26,18 @@ int ConstructionCheck(int n1 ,int m1 , int n2 , int m2){
 
 
 long long int makemap(int n , int m){
-	if (map[n][m] != 0 ){
+	if (domap[n][m] != 0 ){
 		return map[n][m];
 	}
+	domap[n][m] = 1;
 	if (n-1 >=0 && !ConstructionCheck(n,m,n-1,m)){
-		if (map[n-1][m] == 0){
+		if (domap[n-1][m] == 0){
 			makemap(n-1,m);
 		}
 		map[n][m] += map[n-1][m];
 	}
 	if (m-1 >=0 && !ConstructionCheck(n,m,n,m-1)){
-		if (map[n][m-1] == 0){
+		if (domap[n][m-1] == 0){
 			makemap(n,m-1);
 		}
 		map[n][m] += map[n][m-1];
